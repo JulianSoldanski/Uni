@@ -1,0 +1,2 @@
+module Blatt_6 {
+}
