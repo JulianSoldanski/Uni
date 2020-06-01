@@ -30,10 +30,9 @@ public class PerformanceArrayList {
 			}
 			long remove = System.nanoTime();
 			
-			System.out.println( a.getClass() +" Time: 'add()' (nanosec) : " + ((add - start)/100000));
-			System.out.println( a.getClass() +" Time: 'contains()' (nanosec) : " + ((contains-add)/100000));
-			System.out.println( a.getClass() +" Time: 'delete()' (nanosec) : " + ((remove-contains)/100000));
-				
+			
+			System.out.println( a.getClass() +" 'add()': " + ((add - start)/100000) + " 'contains()': " + ((contains-add)/100000) + " 'delete()': " + ((remove-contains)/100000));
+			
 		}
 	}
 }
