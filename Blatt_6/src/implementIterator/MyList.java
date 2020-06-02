@@ -173,7 +173,7 @@ public class MyList<E> implements Iterable<E> {
 	@Override
 	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
-		return new Iterator<E>(this.begin , this.pos);
+		return new ListIterator<E>(this.begin , this);
 	}
 	public int getModCount() {
 		return modCount;

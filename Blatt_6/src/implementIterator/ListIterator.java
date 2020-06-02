@@ -5,16 +5,18 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ListIterator<E> implements Iterator{
-	private MyList<E> top;
+	private MyList<E> list;
 	private MyEntry<E> current;
+	
+	private int nextCount;
 	
 	private int modCountAtCreation;
 	
-	ListIterator(MyEntry<E> current, MyList<E> top){
+	ListIterator(MyEntry<E> current, MyList<E> list){
 		this.current = current;
-		this.top = top;
+		this.list = list;
 		
-		this.modCountAtCreation = top.getModCount();
+		this.modCountAtCreation = list.getModCount();
 	}
 
 	@Override
@@ -25,7 +27,8 @@ public class ListIterator<E> implements Iterator{
 
 	@Override
 	public E next() {
-		if(this.modCountAtCreation != top.getModCount()) {
+		this.nextCount++;
+		if(this.modCountAtCreation != list.getModCount()) {
 			throw new ConcurrentModificationException();
 		}
 		if(!hasNext()) {
@@ -37,5 +40,19 @@ public class ListIterator<E> implements Iterator{
 		return returnValue.o;
 		
 	}
-
+	
+	public void remove() {
+		if(this.modCountAtCreation != list.getModCount()) {
+			throw new ConcurrentModificationException();
+		}
+		
+		if(this.nextCount > 0) {
+			this.current = null;
+		}else {
+			throw new IllegalStateException();
+		}
+		this.nextCount = 0;
+	}
+	
+	
 }
