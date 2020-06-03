@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * @author Lars Huning
  * 
  */
-public class MyList<E> implements Cloneable {
+public class MyList<E> implements Visitable<E> {
 
 	/**
 	 * Reference on the first Entry of this List
@@ -155,6 +155,22 @@ public class MyList<E> implements Cloneable {
 		if (!begin.equals(other.begin))
 			return false;
 		return true;
+	}
+	/**
+	 * Implements Visitable 
+	 * Visitor moves through the whole list
+	 */
+	@Override
+	public void accept(Visitor<E> v) {
+		MyEntry<E> current = this.pos;
+		
+		boolean goOnVisiting = true;
+		
+		while(current != null && goOnVisiting) {
+			goOnVisiting = v.visit(current.o);
+			current = current.next;
+		}
+		
 	}
 
 }
