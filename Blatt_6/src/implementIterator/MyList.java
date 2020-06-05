@@ -13,7 +13,9 @@ import java.util.NoSuchElementException;
  * 
  */
 public class MyList<E> implements Iterable<E> {
-
+	/**
+	 * Counts how many times the List got modified
+	 */
 	private int modCount;
 	/**
 	 * Reference on the first Entry of this List

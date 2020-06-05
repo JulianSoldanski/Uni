@@ -1,3 +1,8 @@
+/**
+ * author: Bo-Ji Wong, Julian Soldanski
+ * 
+ * Compares ArrayList, HashSet and LinkedList regarding runtime speed
+ */
 package CompareCollections;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +18,7 @@ public class PerformanceArrayList {
 		
 		Collection[] toTest = new Collection[] {arrayCollection,linkedCollection,hashCollection};
 		
-		for(Collection <Integer> a : toTest){
+		for(Collection <Integer> a : toTest){ //Tests all given Collections
 			long start = System.nanoTime();
 			for(int i = 0; i < 100000; i++) {
 				a.add(i);
